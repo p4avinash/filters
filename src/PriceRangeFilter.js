@@ -12,7 +12,6 @@ function PriceRangeFilter() {
 
   return (
     <div className=''>
-      <h2>Filters</h2>
       <div>
         <hr />
         <p className='filter-title'>Price</p>

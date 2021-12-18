@@ -7,14 +7,29 @@ export const AppProvider = ({ children }) => {
   const [products, setProducts] = useState([])
   const [productsReserved, setProductsReserved] = useState([])
   const [priceFiltered, setPriceFiltered] = useState(1000)
+  const [categories, setCategories] = useState([])
+  const [categoryFiltered, setCategoryFiltered] = useState([])
 
   useEffect(() => {
     setProducts(productsReserved)
     const filterdProducts = productsReserved.filter(
       (item) => item.price <= priceFiltered
-    )
+      )
     setProducts(filterdProducts)
   }, [priceFiltered])
+
+
+  const clearFilters = () => {
+    setProducts(productsReserved)
+  }
+
+
+  useEffect(()=>{
+    setProducts(productsReserved)
+    const filteredProducts = productsReserved.filter(item => item.category === categoryFiltered)
+    setProducts(filteredProducts)
+  }, [categoryFiltered])
+
 
   useEffect(() => {
     fetch(`https://fakestoreapi.com/products`)
@@ -22,6 +37,13 @@ export const AppProvider = ({ children }) => {
       .then((productItems) => {
         setProducts(...products, productItems)
         setProductsReserved(...products, productItems)
+        const categoriesCollection = [] 
+        productItems.map(item => {
+          if(!categoriesCollection.includes(item.category)){
+            categoriesCollection.push(item.category)
+          }
+        })
+        setCategories(categoriesCollection)
       })
   }, [])
 
@@ -37,6 +59,11 @@ export const AppProvider = ({ children }) => {
         products,
         isLoading,
         setPriceFiltered,
+        categories,
+        setCategoryFiltered,
+        setProducts,
+        productsReserved,
+        clearFilters
       }}
     >
       {children}
