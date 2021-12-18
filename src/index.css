@@ -17,6 +17,7 @@ code {
 }
 
 .filter-container {
+  width: 200px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -30,6 +31,17 @@ code {
 
 .filter-title {
   font-weight: bolder;
+  margin: 0px;
+}
+
+.price-range-filter-display {
+  margin: 0px;
+}
+
+.category-btn-container {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .product-list-container {

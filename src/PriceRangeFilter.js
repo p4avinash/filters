@@ -11,9 +11,10 @@ function PriceRangeFilter() {
   }, [priceRange])
 
   return (
-    <div className='filter-container'>
+    <div className=''>
       <h2>Filters</h2>
-      <div className='price-range-filter-container'>
+      <div>
+        <hr />
         <p className='filter-title'>Price</p>
         <input
           type='range'
@@ -24,6 +25,7 @@ function PriceRangeFilter() {
           onChange={(e) => setPriceRange(e.target.value)}
         />
         <p className='price-range-filter-display'>{priceRange} $</p>
+        <hr />
       </div>
     </div>
   )
